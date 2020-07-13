@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<link rel="icon" href="data:;base64,=">
+	<meta charset="UTF-8" />
+	<title>Phaser Basic Project Template</title>
+	<script src="js/phaser.min.js"></script>
+	<!-- Boot.js must come first since it creates the BasicGame object
+	that stores all the states. -->
+	<script src="js/Boot.js"></script>
+	<script src="js/Preloader.js"></script>
+	<script src="js/MainMenu.js"></script>
+	<script src="js/Level1.js"></script>
+	<script src="js/Level2.js"></script>
+	
+	<!-- main.js must come last since it references the other ones. -->
+	<script src="js/main.js"></script>
+
+<style>
+body
+{
+	background-color: #E7EFF8;
+    color: #302336;
+    font-family: "Avenir", Verdana, sans-serif;
+}
+    #link_bar a { padding:15px; font-weight:bold; font-family: "Avenir", Verdana, sans-serif;}
+    #link_bar a:link { color:#98A1BA;}
+    #link_bar a:visited { color:#8979A3; }
+    #link_bar a:hover { color:#BEC5E6;}
+    #link_bar a:active { color:#9699D6;}
+
+</style>
+</head>
+<body>
+
+<div id="game"></div>
+<div id="link_bar">
+<h2>The Halfway Child</h2>
+
+<ul>
+<li><strong>Originality:</strong>
+The game uses original design and rhyhthm mechanics, original sound and music, as well as an original story told through gameplay.
+</li>
+
+<li><strong>Technical Merit:</strong>
+The game includes audio and visual feedback for the controls, timed event signaling based off of rhythm label data (exported from audacity) to sync gameplay with the music, platforming created with tilemaps, animations, parallax backgrounds, rudimentary UI, and state switching.
+</li>
+<li>The arrows are spawned in off screen and moved towards the left at a fixed velocity to line up with the static arrows in time with the music.</li>
+
+<li><strong>Postmortem:</strong>
+What did you learn from this prototype?
+I learned about the difficulties of getting rhythm detection to work, and so I had to do it manually, but I was able to have audio/visual feedback as opposed to just playing with numbers and guessing for each beat.</li>
+<li> The easiest part was the stuff that I had already done such as animations, parallax, etc. the hard part was finding a solution to the rhythm mapping.
+</li>
+
+<li><strong>Asset Sources:</strong></li>
+<li><a href="https://forums.tigsource.com/index.php?topic=14166.0">Platforms and plant assets</a></li>
+<li><a href="https://www.reachdynamics.com/contact-us/videoblocks-blue-and-green-stars-on-dark-gradient-background_b-6yb4ppl_thumbnail-full01/">Menu BG</a></li>
+<li><a href="http://gaurav.munjal.us/Universal-LPC-Spritesheet-Character-Generator/">Player animations</a></li>
+<li>All other visual assets: original</li>
+<li>Sound and Music: original</li>
+
+</li>
+
+<li><strong>Borrowed Code:</strong></li>
+
+<li><a href="https://phaser.io/examples/v2/arcade-physics/bounding-box">1</a>
+</li>
+<li><a href="https://phaser.io/examples/v2/text/center-text">2</a></li>
+<li><a href="https://phaser.io/examples/v2/text/display-text-word-by-word">3</a></li>
+<li><strong>High Concept:</strong>
+Help the lost girl find her way home in this platformer/rhythm game.
+</li>
+
+<li><strong>Theme:</strong>
+Person who is lost.
+</li>
+
+<li><strong>Prototype Goal:</strong>
+To test movement, animations, rhythm game mechanics, visual/audio feedback, etc.
+</li>
+
+<li><strong>Player Experience Goals:</strong>
+Hopefully the player will be drawn into the world and its protagonist, and enjoy the platforming and rhythmic challenges it offers.
+</li>
+
+<li><strong>Gameplay:</strong>
+<li>Player Actions:</li>
+
+<li>Platforming Level:</li>
+<li>Movement: WASD or Arrow keys</li>
+<li>Jump: Spacebar</li>
+<li>In the main menu use mouse to click the play button. Get to the end of the level to win the game.</li>
+
+<li>Rhythm Level:</li>
+<li>Tap: WASD or Arrow keys</li>
+<li>Tap the arrows that appear at the top of the screen to the rhythm of the music.</li>
+</li>
+
+<li><strong>Strategies:</strong>
+If you are looking to beat the game quickly don't take the high path, it's much harder. If you want a challenge, go for it, take your time as well.
+For the rhythm section, you have to just get good at playing rhythm games.
+</li>
+
+<li><strong>Story/Setting/Premise:</strong>
+The titular Halfway girl wakes up in an unknown forest. Faced with an almost impossible task, she tries to find her way home.
+</li>
+
+<li><strong>Target Audience:</strong>
+People with a strong sense of aesthetic and atmosphere, and those who like platformers or rhythm games.
+</li>
+
+<li><strong>Play Time:</strong>
+6+ minutes.
+</li>
+</div>
+</ul>
+</body>
+</html>
