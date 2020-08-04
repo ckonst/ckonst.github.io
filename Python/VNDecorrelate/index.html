@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title >Velvet Noise Decorrelator</title>
 	<link rel="shortcut icon" href="#">
 
@@ -27,6 +28,55 @@ body
 <h1>Velvet Noise Decorrelator</h1>
 <div id="link_bar">
 <a href="https://github.com/ckonst/VNDecorrelate">Source code for this project</a>
+
+<h2>Introduction</h2>
+
+<p>
+Decorrelation refers to a process where an audio source signal is transformed into multiple output
+signals with different waveforms from each other, but with the same sound as the source signal.
+This is important in the spacial reproduction of sounds where a mono signal is output through multiple loudspeakers such as in a surround system.
+In music production, differences between the left and right channels create the perception of stereo width and space.
+</p>
+<p>
+Traditional decorrelation methods convolve a short, exponentially decaying white noise sequence with the
+audio input signal [1]. This method may cause some latency, as it requires the use of the FFT for
+fast convolution [1]. Velvet noise refers to a sparse, random sequence that consists of samples of values
+of either -1, 0, or 1 [1]. These impulses are generated across a short sequence, typically 30 milliseconds, to satisfy
+a density parameter with the spacing between non-zero impulses also randomized [1], [2], [3].
+</p>
+
+<h2>Audio Examples</h2>
+<p>Original mono signal</p>
+<audio controls>
+	<source src="audio/drums.mp3" type="audio/mp3">
+	your browser does not support the audio tag
+</audio>
+
+<p>Decorrelated stereo signal</p>
+
+<audio controls>
+	<source src="audio/drums_decorrelated.mp3" type="audio/mp3">
+	your browser does not support the audio tag
+</audio>
+
+<h2>References</h2>
+
+
+<p>
+[1] “Velvet-Noise Decorrelator”. <a href="http://www.dafx17.eca.ed.ac.uk/papers/DAFx17_paper_96.pdf">
+http://www.dafx17.eca.ed.ac.uk/papers/DAFx17_paper_96.pdf</a> (accessed Aug. 04, 2020)..
+</p>
+
+<p>
+[2] “Reverberation Modeling Using Velvet Noise”. <a href="http://users.spa.aalto.fi/mak/PUB/AES_Jarvelainen_velvet.pdf">
+http://users.spa.aalto.fi/mak/PUB/AES_Jarvelainen_velvet.pdf</a> (accessed Aug. 04, 2020).
+</p>
+
+<p>
+[3] “Optimized Velvet-Noise Decorrelator - AudioLabs”. <a href="https://www.audiolabs-erlangen.de/resources/2018-DAFx-VND">
+https://www.audiolabs-erlangen.de/resources/2018-DAFx-VND</a> (accessed Aug. 04, 2020).
+</p>
+
 </div>
 
 </body>
