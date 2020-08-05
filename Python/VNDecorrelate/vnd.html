@@ -36,6 +36,8 @@ Decorrelation refers to a process where an audio source signal is transformed in
 signals with different waveforms from each other, but with the same sound as the source signal.
 This is important in the spacial reproduction of sounds where a mono signal is output through multiple loudspeakers such as in a surround system.
 In music production, differences between the left and right channels create the perception of stereo width and space.
+This, however, may come at the cost of potential coloration artifacts. Velvet Noise Decorrelation (VND) attempts to minimize these artifacts to preserve
+spectral integrity and mono compatibility.
 </p>
 <p>
 Traditional decorrelation methods convolve a short, exponentially decaying white noise sequence with the
@@ -46,18 +48,58 @@ a density parameter with the spacing between non-zero impulses also randomized [
 </p>
 
 <h2>Audio Examples</h2>
-<p>Original mono signal</p>
+<p>Original mono drum signal</p>
 <audio controls>
 	<source src="audio/drums.mp3" type="audio/mp3">
 	your browser does not support the audio tag
 </audio>
 
-<p>Decorrelated stereo signal</p>
+<p>Decorrelated stereo drum signal</p>
 
 <audio controls>
 	<source src="audio/drums_decorrelated.mp3" type="audio/mp3">
 	your browser does not support the audio tag
 </audio>
+
+<p>Original mono piano signal</p>
+<audio controls>
+	<source src="audio/piano.mp3" type="audio/mp3">
+	your browser does not support the audio tag
+</audio>
+
+<p>Decorrelated stereo piano signal</p>
+
+<audio controls>
+	<source src="audio/piano_decorrelated.mp3" type="audio/mp3">
+	your browser does not support the audio tag
+</audio>
+
+<p>Original mono guitar signal</p>
+<audio controls>
+	<source src="audio/guitar.mp3" type="audio/mp3">
+	your browser does not support the audio tag
+</audio>
+
+<p>Decorrelated stereo guitar signal</p>
+
+<audio controls>
+	<source src="audio/guitar_decorrelated.mp3" type="audio/mp3">
+	your browser does not support the audio tag
+</audio>
+
+<p>Original mono vocal signal</p>
+<audio controls>
+	<source src="audio/vocal.mp3" type="audio/mp3">
+	your browser does not support the audio tag
+</audio>
+
+<p>Decorrelated stereo vocal signal</p>
+
+<audio controls>
+	<source src="audio/vocal_decorrelated.mp3" type="audio/mp3">
+	your browser does not support the audio tag
+</audio>
+
 
 <h2>References</h2>
 
