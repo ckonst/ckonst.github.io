@@ -3,13 +3,14 @@
 <head>
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <title >Velvet Noise Decorrelator</title>
+    <title >Velvet-Noise Decorrelator</title>
 	<link rel="shortcut icon" href="#">
 
 <style>
 body
 {
-	background-color: #E7EFF8;
+	//background-color: #E7EFF8;
+	background-color: #FFFFFF;
 	text-align: center;
     color: #302336;
     font-family: "Avenir", Verdana, sans-serif;
@@ -19,13 +20,28 @@ body
     #link_bar a:visited { color:#8979A3; }
     #link_bar a:hover { color:#BEC5E6;}
     #link_bar a:active { color:#9699D6;}
+	
+h3 {
+	color: #302336;
+	font-family: "Avenir", Verdana, sans-serif;
+}
+.column {
+  float: left;
+  width: 50%;
+} 
 
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 </style>
  
 </head>
 <body>
 
-<h1>Velvet Noise Decorrelator</h1>
+<h1>Velvet-Noise Decorrelator</h1>
 <div id="link_bar">
 <a href="https://github.com/ckonst/VNDecorrelate">Source code for this project</a>
 
@@ -33,89 +49,130 @@ body
 
 <p>
 Decorrelation refers to a process where an audio source signal is transformed into multiple output
-signals with different waveforms from each other, but with the same sound as the source signal.
-This is important in the spacial reproduction of sounds where a mono signal is output through multiple loudspeakers such as in a surround system.
-In music production, differences between the left and right channels create the perception of stereo width and space.
-This, however, may come at the cost of potential coloration artifacts. Velvet Noise Decorrelation (VND) attempts to minimize these artifacts to preserve
-spectral integrity and mono compatibility.
+signals with different waveforms from each other, but with the same sound as the source signal [1].
+This is important in the spacial reproduction of sounds where a mono signal is output through multiple loudspeakers such as in a surround system [1].
+In music production, decorrelation is used to produce differences between the left and right channels, which creates the perception of stereo width and space.
+This, however, may come at the cost of potential coloration artifacts. Velvet-Noise Decorrelation (VND) attempts to minimize these artifacts as well as
+computation cost while reducing the correlation of the outputs as much as possible [2].
 </p>
 <p>
 Traditional decorrelation methods convolve a short, exponentially decaying white noise sequence with the
-audio input signal [1]. This method may cause some latency, as it requires the use of the FFT for
-fast convolution [1]. Velvet noise refers to a sparse, random sequence that consists of samples of values
-of either -1, 0, or 1 [1]. These impulses are generated across a short sequence, typically 30 milliseconds, to satisfy
-a density parameter with the spacing between non-zero impulses also randomized [1], [2], [3].
+audio input signal [2]. This method may cause some latency, as it requires the use of the FFT for
+fast convolution [2]. Velvet noise refers to a sparse, random sequence that consists of samples of values
+of either -1, 0, or 1 [2]. These impulses are generated across a short sequence, typically 30 milliseconds, to satisfy
+a density parameter with the spacing between non-zero impulses also randomized [2], [3], [4].
 </p>
 
+<img src="img/Figure_1a.png" alt="Figure_1a">
+<img src="img/Figure_1b.png" alt="Figure_1b">
+<img src="img/Figure_1c.png" alt="Figure_1c">
+<p>Figure 1: <i>Steps to create a velvet-noise sequence: (a) A sequence of evenly spaced impulses. For decorrelation, a density of 1000 impulses per second is sufficient [2]. 
+(b) The values of the impulses are randomly assigned to 1 or -1. (c) The spacing of the impulses is randomized.
+</i></p>
+<img src="img/Figure_2.png" alt="Figure_2">
+<p>Figure 2: <i>To mitigate any audible smearing of transients, a segmented decay envelope is applied to the velvet-noise sequence [2]. The specific number of segments and coefficient values can
+be set manually [2].
+</i></p>
+<img src="img/Figure_3.png" alt="Figure_3">
+<p>Figure 3: <i>Velvet-noise sequence with logorithmically distributed impulses. With the impulses concentrated at the start of the sequence, further mitigation of transient smearing is achieved [2].
+</i></p>
+
 <h2>Audio Examples</h2>
-<p>Original mono drum signal</p>
-<audio controls>
-	<source src="audio/drums.mp3" type="audio/mp3">
-	your browser does not support the audio tag
-</audio>
 
-<p>Decorrelated stereo drum signal</p>
+<div class="row">
+	<div class="column">
+		<h3>Original mono signal</h3>
+		<p>Drums</p>
+			<audio id="monoDrums" loop=true controls preload="none">
+				<source src="audio/drums.mp3" type="audio/mp3">
+				your browser does not support the audio tag
+			</audio>
+		<p>Piano</p>
+			<audio id="monoPiano" loop=true controls preload="none">
+				<source src="audio/piano.mp3" type="audio/mp3">
+				your browser does not support the audio tag
+			</audio>
+		<p>Vocal</p>
+			<audio id="monoVocal" loop=true controls preload="none">
+				<source src="audio/vocal.mp3" type="audio/mp3">
+				your browser does not support the audio tag
+			</audio>
+	</div>
+	<div class="column">
+		<h3>Decorrelated stereo signal</h3>
+		<p>Drums</p>
+			<audio id="stereoDrums" loop=true controls preload="none">
+				<source src="audio/drums_decorrelated.mp3" type="audio/mp3">
+				your browser does not support the audio tag
+			</audio>
+		<p>Piano</p>
+			<audio id="stereoPiano" loop=true controls preload="none">
+				<source src="audio/piano_decorrelated.mp3" type="audio/mp3">
+				your browser does not support the audio tag
+			</audio>
+		<p>Vocal</p>
+		<audio id="stereoVocal" loop=true controls preload="none">
+			<source src="audio/vocal_decorrelated.mp3" type="audio/mp3">
+			your browser does not support the audio tag
+		</audio>
+	</div>
+</div>
 
-<audio controls>
-	<source src="audio/drums_decorrelated.mp3" type="audio/mp3">
-	your browser does not support the audio tag
-</audio>
-
-<p>Original mono piano signal</p>
-<audio controls>
-	<source src="audio/piano.mp3" type="audio/mp3">
-	your browser does not support the audio tag
-</audio>
-
-<p>Decorrelated stereo piano signal</p>
-
-<audio controls>
-	<source src="audio/piano_decorrelated.mp3" type="audio/mp3">
-	your browser does not support the audio tag
-</audio>
-
-<p>Original mono guitar signal</p>
-<audio controls>
-	<source src="audio/guitar.mp3" type="audio/mp3">
-	your browser does not support the audio tag
-</audio>
-
-<p>Decorrelated stereo guitar signal</p>
-
-<audio controls>
-	<source src="audio/guitar_decorrelated.mp3" type="audio/mp3">
-	your browser does not support the audio tag
-</audio>
-
-<p>Original mono vocal signal</p>
-<audio controls>
-	<source src="audio/vocal.mp3" type="audio/mp3">
-	your browser does not support the audio tag
-</audio>
-
-<p>Decorrelated stereo vocal signal</p>
-
-<audio controls>
-	<source src="audio/vocal_decorrelated.mp3" type="audio/mp3">
-	your browser does not support the audio tag
-</audio>
-
+<script>
+/* This is a script that ensures that only one audio element is playing at a time.
+ * If the audio that was previously playing is the same instrument
+ * as the new audio which the user just hit play on, 
+ * start the new one at the same time that the old one was paused.
+ * This will help the listener compare the input and output signals.
+ */
+var audio = document.querySelectorAll("audio");
+/* I use an event listener to tell when the play button is pressed.*/
+audio.forEach(function(e) {
+	e.addEventListener("play", function(){onPlay(e.id)}, false);
+	});
+function onPlay(playId) {
+	var playSound = document.getElementById(playId);
+	var ids = Object.values(audio).map(a => a.id);
+	for (var pauseId of ids) {
+		var pauseSound = document.getElementById(pauseId);
+		/* Don't do anything if the pauseSound is supposed to be playing
+		 * or if the pauseSound wasn't playing to begin with.
+		 */
+		if(pauseId !== playId && pauseSound.paused === false) {
+			pauseIndex = ids.indexOf(pauseId);
+			playIndex = ids.indexOf(playId);
+			/* This code uses the indices of the audio elements to determine
+			 * if the current time playSound needs to be matched with the pauseSound.
+			 */
+			if (pauseIndex === (playIndex < 3 ? playIndex + 3 : playIndex - 3)) {
+				playSound.currentTime = pauseSound.currentTime;
+			}
+			pauseSound.pause();
+			playSound.play();
+		}
+	}
+}
+</script>
 
 <h2>References</h2>
 
-
 <p>
-[1] “Velvet-Noise Decorrelator”. <a href="http://www.dafx17.eca.ed.ac.uk/papers/DAFx17_paper_96.pdf">
-http://www.dafx17.eca.ed.ac.uk/papers/DAFx17_paper_96.pdf</a> (accessed Aug. 04, 2020)..
+[1] “What is ‘Decorrelation’? | Sweetwater”. <a href="https://www.sweetwater.com/insync/decorrelation/">
+https://www.sweetwater.com/insync/decorrelation/</a> (accessed Aug. 10, 2020).
 </p>
 
 <p>
-[2] “Reverberation Modeling Using Velvet Noise”. <a href="http://users.spa.aalto.fi/mak/PUB/AES_Jarvelainen_velvet.pdf">
+[2] “Velvet-Noise Decorrelator”. <a href="http://www.dafx17.eca.ed.ac.uk/papers/DAFx17_paper_96.pdf">
+http://www.dafx17.eca.ed.ac.uk/papers/DAFx17_paper_96.pdf</a> (accessed Aug. 04, 2020).
+</p>
+
+<p>
+[3] “Reverberation Modeling Using Velvet Noise”. <a href="http://users.spa.aalto.fi/mak/PUB/AES_Jarvelainen_velvet.pdf">
 http://users.spa.aalto.fi/mak/PUB/AES_Jarvelainen_velvet.pdf</a> (accessed Aug. 04, 2020).
 </p>
 
 <p>
-[3] “Optimized Velvet-Noise Decorrelator - AudioLabs”. <a href="https://www.audiolabs-erlangen.de/resources/2018-DAFx-VND">
+[4] “Optimized Velvet-Noise Decorrelator - AudioLabs”. <a href="https://www.audiolabs-erlangen.de/resources/2018-DAFx-VND">
 https://www.audiolabs-erlangen.de/resources/2018-DAFx-VND</a> (accessed Aug. 04, 2020).
 </p>
 
