@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title >Impulse</title>
+	<link rel="shortcut icon" href="#">
+
+<style>
+body
+{
+	//background-color: #E7EFF8;
+	background-color: #FFFFFF;
+	text-align: center;
+    color: #302336;
+    font-family: "Avenir", Verdana, sans-serif;
+}
+    #link_bar a { padding:15px; font-weight:bold; font-family: "Avenir", Verdana, sans-serif;}
+    #link_bar a:link { color:#98A1BA;}
+    #link_bar a:visited { color:#8979A3; }
+    #link_bar a:hover { color:#BEC5E6;}
+    #link_bar a:active { color:#9699D6;}
+	
+h3 {
+	color: #302336;
+	font-family: "Avenir", Verdana, sans-serif;
+}
+.column {
+  float: left;
+  width: 50%;
+} 
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
+ 
+</head>
+<body>
+
+<h1>Impulse</h1>
+<div id="link_bar">
+<a href="https://github.com/ckonst/Impulse">Source code for this project</a>
+
+<h2>Demo Video</h2>
+<video width="320" height="240" controls>
+  <source src="Impulse_demo.mp4" type="video/mp4">
+</video>
+<p>
+Impulse is a rhythm game where the player must click on the circles that
+appear on the screen to the beat of the song. Players can play procedurally generated
+beatmaps using their own audio files.
+</p>
+<p>
+The beatmaps are automatically generated using superflux onset detection, and Perlin Noise for x and y coordinates.
+</p>
+<img src="log-mel-fs.png" alt="Figure_1">
+<p>
+For onset detection, a log mel-spectrogram is taken from the user's selected audio file. A window length of 1024 samples with a stride of 441 samples is used at a sampling frequency of 44100 kHz.
+</p>
+<img src="superflux_onsets.png" alt="Figure_2">
+<p>
+Next the superflux function is applied to generate peaks for the peak picking onset detection function.
+</p>
+<p>
+Lastly, two Perlin Noise sequences are constructed for the x and y coordinates for each onset.
+</p>
+<img src="perlin.png" alt="Figure_3">
+<p>
+Each beatmap is stored in its own folder under beatmaps/ using the name of the input file.
+A json file is created containing the name of the song, list of onsets and corresponding x and y locations.
+</p>
+<p>
+Impulse runs on PyGame due to its compatibility with other libraries that I am familiar with, 
+namely, NumPy (Perlin noise generation, onset detection), librosa (onset detection, DSP functions), and PyDub (Audio File I/O).
+</p>
+<p>
+Playing rhythm games are fun, but they are more fun when you can
+play music that you like without having to spend the time making a beatmap for every song you own.
+Rhythym games are challenge to make and to play, I hope to do more in the future.
+</p>
+
+</div>
+</body>
+</html>
