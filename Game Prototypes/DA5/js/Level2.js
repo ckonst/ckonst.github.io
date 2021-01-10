@@ -335,8 +335,7 @@ function nextLine(txt, str) {
 				if(arrowData[i]*1000 === 0)
 					continue;
 				arrowData[i] = arrowData[i]*1000;
-				
-				game.time.events.add(arrowData[i] - (((game.width -168)/500) * 1000) + 100, function(){spawnArrow(i);}, this);
+				game.time.events.add(arrowData[i] - (((game.width -168)/500) * 1000), function(){spawnArrow(i);}, this);
 			}
 			
 			//audio
