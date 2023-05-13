@@ -1,0 +1,6 @@
+[submodule "GamePrototypes"]
+	path = GamePrototypes
+	url = https://github.com/ckonst/cs325-game-prototypes/
+[submodule "PrototypeWebBuild"]
+	path = PrototypeWebBuild
+	url = https://github.com/ckonst/PrototypeWebBuild.git
