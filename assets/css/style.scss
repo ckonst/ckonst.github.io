@@ -7,7 +7,10 @@
 
   /* Force light mode even if system is dark */
   :root {
-    --background-color: #ffffff;
-    --text-color: #000000;
+    --background-color: #F5F5F7;
+    --text-color: #1A1A1A;
+    .theme-fill {
+      fill: #1A1A1A;
+    }
   }
 }
