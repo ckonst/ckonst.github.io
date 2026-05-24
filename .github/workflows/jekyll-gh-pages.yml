@@ -52,8 +52,13 @@ jobs:
 
           # Match any HTML tag (e.g. <style>...</style>) that contains the dark mode query
           pattern = re.compile(
-              r'<(\w+)[^>]*>.*?@media\s*\(prefers-color-scheme:\s*dark\).*?</\1>',
-              re.DOTALL | re.IGNORECASE
+            # Paired tags: <style>...dark...</style>
+            r'<(\w+)[^>]*>.*?@media\s*\(prefers-color-scheme:\s*dark\).*?</\1>'
+            r'|'
+            # Self-closing tags: <tag ...dark... /> or <tag ...dark...>
+            r'<\w+[^>]*@media\s*\(prefers-color-scheme:\s*dark\)[^>]*/?>'
+            ,
+            re.DOTALL | re.IGNORECASE
           )
 
           cleaned, count = pattern.subn("", content)
