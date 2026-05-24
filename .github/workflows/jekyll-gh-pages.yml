@@ -58,7 +58,7 @@ jobs:
 
           cleaned, count = pattern.subn("", content)
 
-          cleaned = cleaned.replace('\n<picture>', <picture>)
+          cleaned = cleaned.replace('\n<picture>', '<picture>')
 
           with open(file_path, "w") as f:
               f.write(cleaned)
