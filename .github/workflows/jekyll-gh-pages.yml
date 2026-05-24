@@ -40,6 +40,30 @@ jobs:
           # Required if checking out only single files outside of cone mode
           sparse-checkout-cone-mode: false
 
+      - name: Remove dark mode media query HTML elements
+        run: |
+          python3 - <<'EOF'
+          import re, sys
+
+          file_path = "VNDecorrelate/README.md"
+
+          with open(file_path, "r") as f:
+              content = f.read()
+
+          # Match any HTML tag (e.g. <style>...</style>) that contains the dark mode query
+          pattern = re.compile(
+              r'<(\w+)[^>]*>.*?@media\s*\(prefers-color-scheme:\s*dark\).*?</\1>',
+              re.DOTALL | re.IGNORECASE
+          )
+
+          cleaned, count = pattern.subn("", content)
+
+          with open(file_path, "w") as f:
+              f.write(cleaned)
+
+          print(f"Removed {count} element(s) containing dark mode media query.")
+          EOF
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
