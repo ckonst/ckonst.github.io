@@ -51,9 +51,9 @@ jobs:
               content = f.read()
 
           pattern = re.compile(
-            r'<\w+[^>]*@media\s*\(prefers-color-scheme:\s*dark\)[^>]*/?>'
+            r'<\w+[^>]*media="*\(prefers-color-scheme:\s*dark\)\"[^>]*\/?>'
             ,
-            re.DOTALL | re.IGNORECASE
+            re.DOTALL | re.IGNORECASE,
           )
 
           cleaned, count = pattern.subn("", content)
