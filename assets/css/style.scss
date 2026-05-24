@@ -1,0 +1,13 @@
+---
+---
+@import "{{ site.theme }}";
+
+/* Add your overrides here */
+@media (prefers-color-scheme: dark) {
+
+  /* Force light mode even if system is dark */
+  :root {
+    --background-color: #ffffff;
+    --text-color: #000000;
+  }
+}
