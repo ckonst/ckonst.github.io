@@ -28,13 +28,27 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./
           destination: ./_site
+
+      - name: Checkout VNDecorrelate readme
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          repository: ckonst/VNDecorrelate
+          path: VNDecorrelate
+          sparse-checkout: |
+            README.md
+          # Required if checking out only single files outside of cone mode
+          sparse-checkout-cone-mode: false
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
