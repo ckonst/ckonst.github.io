@@ -1,0 +1,5 @@
+/* Force light mode styles even if system is dark */
+:root {
+    --body-bg: #FFFFFF;
+    --body-color: #000000;
+}
