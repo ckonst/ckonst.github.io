@@ -74,6 +74,10 @@ jobs:
         with:
           source: ./
           destination: ./_site
+      
+      - name: List Files In Site Directory
+        run: |
+          ls ./_site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
