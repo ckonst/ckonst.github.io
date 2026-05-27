@@ -46,7 +46,7 @@ jobs:
           import re, sys
 
           readme_path = "VNDecorrelate/README.md"
-          examples_path = "VNDecorrelate/examples.html"
+          examples_path = "vnd/examples.html"
 
           with open(readme_path, "r") as f:
               content = f.read()
@@ -82,8 +82,9 @@ jobs:
           source: ./
           destination: ./_site
       
-      - name: List Files In Site Directory
+      - name: List Files
         run: |
+          ls .
           ls ./_site
 
       - name: Upload artifact
