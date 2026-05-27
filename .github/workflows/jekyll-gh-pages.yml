@@ -45,10 +45,14 @@ jobs:
           python3 - <<'EOF'
           import re, sys
 
-          file_path = "VNDecorrelate/README.md"
+          readme_path = "VNDecorrelate/README.md"
+          examples_path = "VNDecorrelate/examples.html"
 
-          with open(file_path, "r") as f:
+          with open(readme_path, "r") as f:
               content = f.read()
+
+          with open(examples_path, "r") as f:
+            examples_html = f.read()
 
           pattern = re.compile(
             r'<\w+[^>]*media="*\(prefers-color-scheme:\s*dark\)\"[^>]*\/?>'
@@ -60,10 +64,13 @@ jobs:
 
           cleaned = cleaned.replace('\n<picture>', '<picture>')
 
-          with open(file_path, "w") as f:
+          cleaned += examples_html
+
+          with open(readme_path, "w") as f:
               f.write(cleaned)
 
           print(f"Removed {count} element(s) containing dark mode media query.")
+          print("Appended examples.html to page")
           EOF
 
       - name: Setup Pages

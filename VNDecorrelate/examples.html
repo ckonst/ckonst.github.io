@@ -1,0 +1,87 @@
+<h2>Audio Examples</h2>
+
+<div class="row">
+	<div class="column">
+		<h3>Original mono signal</h3>
+		<p>Drums</p>
+		<audio id="monoDrums" loop=true controls preload="none">
+			<source src="audio/drums.mp3" type="audio/mp3">
+			your browser does not support the audio tag
+		</audio>
+		<p>Guitar</p>
+		<audio id="monoGuitar" loop=true controls preload="none">
+			<source src="audio/guitar.mp3" type="audio/mp3">
+			your browser does not support the audio tag
+		</audio>
+		<p>Vocal</p>
+		<audio id="monoVocal" loop=true controls preload="none">
+			<source src="audio/vocal.mp3" type="audio/mp3">
+			your browser does not support the audio tag
+		</audio>
+		<p>Viola</p>
+		<audio id="monoViola" loop=true controls preload="none">
+			<source src="audio/viola.mp3" type="audio/mp3">
+			your browser does not support the audio tag
+		</audio>
+	</div>
+
+	<div class="column">
+		<h3>Decorrelated stereo signal</h3>
+		<p>Drums</p>
+		<audio id="stereoDrums" loop=true controls preload="none">
+			<source src="audio/drums_decorrelated.mp3" type="audio/mp3">
+			your browser does not support the audio tag
+		</audio>
+		<p>Guitar</p>
+		<audio id="stereoGuitar" loop=true controls preload="none">
+			<source src="audio/guitar_decorrelated.mp3" type="audio/mp3">
+			your browser does not support the audio tag
+		</audio>
+		<p>Vocal</p>
+		<audio id="stereoVocal" loop=true controls preload="none">
+			<source src="audio/vocal_decorrelated.mp3" type="audio/mp3">
+			your browser does not support the audio tag
+		</audio>
+		<p>Viola</p>
+		<audio id="stereoViola" loop=true controls preload="none">
+			<source src="audio/viola_decorrelated.mp3" type="audio/mp3">
+			your browser does not support the audio tag
+		</audio>
+	</div>
+</div>
+
+<script>
+	/* This is a script that ensures that only one audio element is playing at a time.
+		* If the audio that was previously playing is the same instrument
+		* as the new audio which the user just hit play on,
+		* start the new one at the same time that the old one was paused.
+		* This will help the listener compare the input and output signals.
+		*/
+	var audio = document.querySelectorAll("audio");
+	/* I use an event listener to tell when the play button is pressed.*/
+	audio.forEach(function (e) {
+		e.addEventListener("play", function () { onPlay(e.id) }, false);
+	});
+	function onPlay(playId) {
+		var playSound = document.getElementById(playId);
+		var ids = Object.values(audio).map(a => a.id);
+		for (var pauseId of ids) {
+			var pauseSound = document.getElementById(pauseId);
+			/* Don't do anything if the pauseSound is supposed to be playing
+				* or if the pauseSound wasn't playing to begin with.
+				*/
+			if (pauseId !== playId && pauseSound.paused === false) {
+				pauseIndex = ids.indexOf(pauseId);
+				playIndex = ids.indexOf(playId);
+				/* This code uses the indices of the audio elements to determine
+					* if the current time playSound needs to be matched with the pauseSound.
+					*/
+				if (pauseIndex === (playIndex < 4 ? playIndex + 4 : playIndex - 4)) {
+					playSound.currentTime = pauseSound.currentTime;
+				}
+				pauseSound.pause();
+				playSound.play();
+			}
+		}
+	}
+</script>
