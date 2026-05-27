@@ -84,7 +84,6 @@ jobs:
       
       - name: List Files
         run: |
-          ls .
           ls ./_site
 
       - name: Upload artifact
