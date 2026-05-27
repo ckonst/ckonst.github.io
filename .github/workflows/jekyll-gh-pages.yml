@@ -37,8 +37,9 @@ jobs:
           path: VNDecorrelate
           sparse-checkout: |
             README.md
+            audio
           # Required if checking out only single files outside of cone mode
-          sparse-checkout-cone-mode: false
+          sparse-checkout-cone-mode: true
 
       - name: Remove dark mode media query HTML elements
         run: |
